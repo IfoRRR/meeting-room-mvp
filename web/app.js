@@ -3,16 +3,16 @@ const { computed, createApp, onMounted, ref } = Vue;
 const api = {
   async getRooms(minCapacity) {
     const query = new URLSearchParams({ minCapacity });
-    return request(`/api/rooms?${query}`);
+    return request(`/meeting/api/rooms?${query}`);
   },
 
   async getBookings(date) {
     const query = new URLSearchParams({ date });
-    return request(`/api/bookings?${query}`);
+    return request(`/meeting/api/bookings?${query}`);
   },
 
   async createBooking(booking) {
-    return request('/api/bookings', {
+    return request('/meeting/api/bookings', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(booking),
