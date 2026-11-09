@@ -1,18 +1,19 @@
 const { computed, createApp, onMounted, ref } = Vue;
+const apiBase = window.location.pathname.startsWith('/meeting') ? '/meeting/api' : '/api';
 
 const api = {
   async getRooms(minCapacity) {
     const query = new URLSearchParams({ minCapacity });
-    return request(`/meeting/api/rooms?${query}`);
+    return request(`${apiBase}/rooms?${query}`);
   },
 
   async getBookings(date) {
     const query = new URLSearchParams({ date });
-    return request(`/meeting/api/bookings?${query}`);
+    return request(`${apiBase}/bookings?${query}`);
   },
 
   async createBooking(booking) {
-    return request('/meeting/api/bookings', {
+    return request(`${apiBase}/bookings`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(booking),
